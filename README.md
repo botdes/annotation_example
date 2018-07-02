@@ -31,6 +31,8 @@ Factory.class		MyProcessor.class
 теперь собираем jar файл
 `jar cvf processor.jar *`
 
+можно собирать jar и с помомощью idea: https://stackoverflow.com/questions/25501926/annotation-processor-compilation-in-intellij-idea
+
 4) идем в модуль annotationUsage и собраем его с помощью `javac`
 ```
 cd annotationUsage/src
