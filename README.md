@@ -30,9 +30,6 @@ company
 Factory.class		MyProcessor.class
 ```
 
-теперь собираем jar файл
-`jar cvf processor.jar *`
-
 
 4) идем в модуль annotationUsage и собраем его с помощью `gradle`
 ```
