@@ -2,5 +2,5 @@ apply plugin: 'java'
 apply plugin: 'idea'
 
 dependencies {
-    compile files('/Users/new_guest/IdeaProjects/annotation_example/annotationProcessor/out/artifacts/annotationProcessor_jar/annotationProcessor.jar')
+    compile files('../annotationProcessor/out/artifacts/annotationProcessor_jar/annotationProcessor.jar')
 }
