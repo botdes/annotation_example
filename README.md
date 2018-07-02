@@ -1,18 +1,20 @@
 # annotation_example
-1) у нас есть 2 модуля annotationProcessor и annotationUsage.
-открывает оба модуля с помомощью intellijIdea
+1) устанавливаем gradle https://gradle.org/install/ он нам понадобится для более удобной работы с зависимостями
 
-2) компилируем с помощью intellijIdea модуль annotationProcessor (только его, второй пока не компилируется)
+2) у нас есть 2 модуля annotationProcessor и annotationUsage. Открвываем annotationProcessor в intellijIdea
 
-3) теперь нам нужно создать jar файл со спецальной струкрурой в нем, смотри пример тут: http://hannesdorfmann.com/annotation-processing/annotationprocessing101
-в командной строке находим директорию куда intellijIdea  положила скомпилированные классы.
-скорее всего это `annotationProcessor/out/production/annotationProcessor`
+3) Учим intellijIdea генерировать jar file c нужными дополнительными файлами. Зачем нужны дополнительные файлы написано здесь
+http://hannesdorfmann.com/annotation-processing/annotationprocessing101
 
-копируем туда манифест: `cp -r ../../../META-INF .`
 
-получаем такую структуру:
+`File -> ProjectStructure -> Artifacts -> + -> Jar -> From Module dependencies`
+слева еще раз кликаем `+ -> DirectoryContent` выбераем `additional_files` 
+
+теперь собираем jar файл:
+`Build -> Build Artifacts`
+
+jar файл внутри должен иметь такую структуру:
 ```
-$~/IdeaProjects/annotation_example/annotationProcessor/out/production/annotationProcessor ls -R
 META-INF	com
 
 ./META-INF:
@@ -32,12 +34,11 @@ Factory.class		MyProcessor.class
 `jar cvf processor.jar *`
 
 
-4) идем в модуль annotationUsage и собраем его с помощью `javac`
+4) идем в модуль annotationUsage и собраем его с помощью `gradle`
 ```
-cd annotationUsage/src
-javac -cp ../../annotationProcessor/out/production/annotationProcessor/processor.jar Main.java
+gradle clean build
 ```
+должно вывестись `it works!` в логе
 
---
-можно собирать jar и с помомощью idea: https://stackoverflow.com/questions/25501926/annotation-processor-compilation-in-intellij-idea
+5) импортируем annotationUsage в intellijIdea как gradle project. Теперь билд можно вызывать из idea.
 
